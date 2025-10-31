@@ -1,0 +1,6 @@
+.*
+!.gitignore
+auto-save-list
+eln-cache
+elpa
+transient
