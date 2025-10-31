@@ -16,6 +16,10 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Ubuntu Mono" :foundry "DAMA" :slant normal :weight regular :height 218 :width normal)))))
 
+;; compile
+(global-set-key (kbd "C-c c") 'compile)
+(global-set-key (kbd "C-c r") 'recompile)
+
 ;; multiple-cursors
 ;; https://github.com/magnars/multiple-cursors.el
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
