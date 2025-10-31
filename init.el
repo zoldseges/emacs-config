@@ -22,6 +22,9 @@
 (global-set-key (kbd "C-c c") 'compile)
 (global-set-key (kbd "C-c r") 'recompile)
 
+;; jump to error in compile window
+(setq compilation-skip-threshold 2)
+
 ;; multiple-cursors
 ;; https://github.com/magnars/multiple-cursors.el
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
