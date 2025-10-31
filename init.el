@@ -28,6 +28,11 @@
 ;; jump to error in compile window
 (setq compilation-skip-threshold 2)
 
+;; colorize compilation buffer
+(defun colorize-compilation-buffer ()
+  (ansi-color-apply-on-region compilation-filter-start (point-max)))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
 ;; multiple-cursors
 ;; https://github.com/magnars/multiple-cursors.el
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
