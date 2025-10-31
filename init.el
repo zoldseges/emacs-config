@@ -9,7 +9,8 @@
  '(package-selected-packages '(magit multiple-cursors))
  '(ring-bell-function 'ignore)
  '(tool-bar-mode nil)
- '(visible-bell t))
+ '(visible-bell t)
+ '(which-key-mode t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
