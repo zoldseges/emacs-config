@@ -7,7 +7,9 @@
  '(custom-enabled-themes '(tsdh-dark))
  '(menu-bar-mode nil)
  '(package-selected-packages '(magit multiple-cursors))
- '(tool-bar-mode nil))
+ '(ring-bell-function 'ignore)
+ '(tool-bar-mode nil)
+ '(visible-bell t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
