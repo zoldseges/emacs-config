@@ -39,5 +39,7 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+;; c-mode
 (setq c-default-style "linux"
       c-basic-offset 4)
+(c-set-offset 'case-label '+)
