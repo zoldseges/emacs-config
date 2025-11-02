@@ -26,7 +26,7 @@
 (global-set-key (kbd "C-c r") 'recompile)
 
 ;; jump to error in compile window
-(setq compilation-skip-threshold 2)
+;; (setq compilation-skip-threshold 2)
 
 ;; colorize compilation buffer
 (defun colorize-compilation-buffer ()
