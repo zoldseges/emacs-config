@@ -44,3 +44,9 @@
 (setq c-default-style "linux"
       c-basic-offset 4)
 (c-set-offset 'case-label '+)
+
+;; auto revert mode
+(global-auto-revert-mode 1)
+
+;; turn off kill on C-x C-c
+(global-set-key (kbd "C-x C-c") nil)
