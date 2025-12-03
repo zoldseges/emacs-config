@@ -50,6 +50,8 @@
 
 ;; turn off kill on C-x C-c
 (global-set-key (kbd "C-x C-c") nil)
+; set C-x <escape> instead
+(global-set-key (kbd "C-x <escape>") #'save-buffers-kill-emacs)
 
 ;; c3
 (setq treesit-language-source-alist
@@ -60,3 +62,4 @@
 ;; hungarian-postfix
 (add-to-list 'load-path "/home/adam/.emacs.d/repos/hungarian-postfix")
 (require 'hungarian-postfix)
+
