@@ -56,3 +56,7 @@
   '((c3 "https://github.com/c3lang/tree-sitter-c3")))
 (add-to-list 'load-path "/home/adam/.emacs.d/repos/c3-ts-mode")
 (require 'c3-ts-mode)
+
+;; hungarian-postfix
+(add-to-list 'load-path "/home/adam/.emacs.d/repos/hungarian-postfix")
+(require 'hungarian-postfix)
