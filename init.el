@@ -50,3 +50,9 @@
 
 ;; turn off kill on C-x C-c
 (global-set-key (kbd "C-x C-c") nil)
+
+;; c3
+(setq treesit-language-source-alist
+  '((c3 "https://github.com/c3lang/tree-sitter-c3")))
+(add-to-list 'load-path "/home/adam/.emacs.d/repos/c3-ts-mode")
+(require 'c3-ts-mode)
