@@ -51,7 +51,7 @@
 ;; turn off kill on C-x C-c
 (global-set-key (kbd "C-x C-c") nil)
 ; set C-x <escape> instead
-(global-set-key (kbd "C-x <escape>") #'save-buffers-kill-emacs)
+(global-set-key (kbd "C-x <f12>") #'save-buffers-kill-emacs)
 
 ;; c3
 (setq treesit-language-source-alist
