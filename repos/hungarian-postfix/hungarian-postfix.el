@@ -26,4 +26,6 @@ Type a'-> á, o: -> ö, o\"-> ő, etc."
  ("u=" ?ű) ("U=" ?Ű)
 )
 
+(setq default-input-method "hungarian-postfix")
+
 (provide 'hungarian-postfix)
