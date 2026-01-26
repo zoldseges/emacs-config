@@ -49,8 +49,11 @@
 ;; auto revert mode
 (global-auto-revert-mode 1)
 
-;; turn off kill on C-x C-c
+;; set kill-emacs keybind to C-x m (mail-to) instead
+(global-set-key (kbd "C-x m") nil) ;; email-to
 (global-set-key (kbd "C-x C-c") nil)
+(global-set-key (kbd "C-x m") #'kill-emacs)
+
 ; set C-x <escape> instead
 (global-set-key (kbd "C-x <f12>") #'save-buffers-kill-emacs)
 
