@@ -1,3 +1,7 @@
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.org/packages/") t)
+
 ;;; -*- lexical-binding: t -*-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -9,7 +13,11 @@
  '(custom-enabled-themes '(tsdh-dark))
  '(make-backup-files nil)
  '(menu-bar-mode nil)
- '(package-selected-packages '(magit multiple-cursors))
+ '(package-selected-packages '(
+			       go-mode
+			       magit
+			       multiple-cursors
+			       org-roam))
  '(ring-bell-function 'ignore)
  '(tool-bar-mode nil)
  '(visible-bell t)
