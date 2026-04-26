@@ -13,7 +13,7 @@
  '(custom-enabled-themes '(tsdh-dark))
  '(make-backup-files nil)
  '(menu-bar-mode nil)
- '(package-selected-packages '(go-mode magit multiple-cursors))
+ '(package-selected-packages '(go-mode magit multiple-cursors org-noter))
  '(ring-bell-function 'ignore)
  '(tool-bar-mode nil)
  '(visible-bell t)
