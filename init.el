@@ -15,11 +15,15 @@
  '(dired-hide-details-preserved-columns nil)
  '(dired-listing-switches "-al --time-style=long-iso")
  '(dired-use-ls-dired t)
+ '(global-hl-line-mode t)
  '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(package-selected-packages '(go-mode magit multiple-cursors))
+ '(org-startup-truncated nil)
  '(ring-bell-function 'ignore)
  '(tool-bar-mode nil)
+ '(truncate-lines nil)
+ '(truncate-partial-width-windows nil)
  '(visible-bell t)
  '(which-key-mode t))
 
@@ -29,6 +33,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Ubuntu Mono" :foundry "DAMA" :slant normal :weight regular :height 158 :width normal))))
+ '(hl-line ((t (:extend t :background "grey27"))))
  '(org-drawer ((t (:foreground "steel blue")))))
 
 ;; compile
