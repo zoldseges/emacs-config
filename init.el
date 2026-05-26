@@ -1,4 +1,10 @@
 ;;; -*- lexical-binding: t -*-
+
+;;; Init profiling
+;; Uncomment this and after startup do 'M-x profiler-report'
+;; to see why emacs starts up slow.
+;; (profiler-start 'cpu+mem)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -19,10 +25,12 @@
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("nongnu" . "https://elpa.nongnu.org/nongnu/")
      ("melpa" . "https://melpa.org/packages/")))
+ '(package-quickstart t)
  '(package-selected-packages '(magit markdown-mode multiple-cursors pdf-tools xclip))
  '(tool-bar-mode nil)
  '(truncate-lines t nil nil "Let lines go off-screen")
- '(which-key-mode t))
+ '(which-key-mode t)
+ '(xclip-mode t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -33,28 +41,32 @@
  '(hl-line ((t (:extend t :background "grey27"))))
  '(org-drawer ((t (:foreground "steel blue")))))
 
-;;; Packages
 
-(defun package-archives-stale-p (seconds)
-  "Return t if package archives are older than SECONDS."
-  (let ((dir (expand-file-name "archives" package-user-dir)))
-    (or (not (file-exists-p dir))
-        (> (float-time (time-subtract nil
-                         (file-attribute-modification-time
-                          (file-attributes dir))))
-           seconds))))
+;;; ----  Package setup (see notes/package-setup.md)  ----
+;; Auto-installs missing packages on startup.
+;; To upgrade, run
+;; M-x package-refresh-contents then
+;; M-x package-install-selected-packages.
 
-(defun setup-and-refresh-packages (refresh-interval)
-  "Initialize the package manager, refresh archives if older than
-REFRESH-INTERVAL seconds, and install missing selected packages."
-  (package-initialize)
-  (when (package-archives-stale-p refresh-interval)
-    (package-refresh-contents))
-  (package-install-selected-packages t))
+;; Load package.el so custom-set-variables can apply package-selected-packages.
+(require 'package)
 
-(setup-and-refresh-packages (* 7 24 60 60)) ; 1 week
+;; Install missing packages (network errors won't abort init).
+(let ((missing (seq-some
+                (lambda (p) (not (package-installed-p p)))
+                package-selected-packages)))
+  (when missing
+    (with-demoted-errors "Package error: %S"
+      ;; Refresh archive index so new packages can be found.
+      (package-refresh-contents)
+      ;; Install everything in package-selected-packages that's missing.
+      (package-install-selected-packages t))))
 
-;;; End Packages
+;; Generate quickstart cache if it doesn't exist yet.
+(unless (file-exists-p (concat package-quickstart-file "c"))
+  (package-quickstart-refresh))
+
+;;; ----------------  End Package setup  -----------------
 
 ;; compile
 (global-set-key (kbd "C-c c") 'compile)
