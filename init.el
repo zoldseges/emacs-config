@@ -18,8 +18,9 @@
  '(global-hl-line-mode t)
  '(make-backup-files nil)
  '(menu-bar-mode nil)
- '(package-selected-packages '(go-mode magit multiple-cursors))
  '(org-startup-truncated nil)
+ '(package-selected-packages
+   '(go-mode magit markdown-mode multiple-cursors pdf-tools xclip))
  '(ring-bell-function 'ignore)
  '(tool-bar-mode nil)
  '(truncate-lines nil)
@@ -53,6 +54,7 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(setq mc/always-run-for-all t)
 
 ;; c-mode
 (setq c-default-style "linux"
@@ -79,4 +81,8 @@
 ;; hungarian-postfix
 ;; (add-to-list 'load-path "/home/adam/.emacs.d/repos/hungarian-postfix")
 ;; (require 'hungarian-postfix)
+
+;; ido
+;; (ido-mode 1)
+;; (ido-everywhere 1)
 
