@@ -1,7 +1,3 @@
-(require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.org/packages/") t)
-
 ;;; -*- lexical-binding: t -*-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -19,13 +15,13 @@
  '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(org-startup-truncated nil)
- '(package-selected-packages
-   '(go-mode magit markdown-mode multiple-cursors pdf-tools xclip))
- '(ring-bell-function 'ignore)
+ '(package-archives
+   '(("gnu" . "https://elpa.gnu.org/packages/")
+     ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+     ("melpa" . "https://melpa.org/packages/")))
+ '(package-selected-packages '(magit markdown-mode multiple-cursors pdf-tools xclip))
  '(tool-bar-mode nil)
- '(truncate-lines nil)
- '(truncate-partial-width-windows nil)
- '(visible-bell t)
+ '(truncate-lines t nil nil "Let lines go off-screen")
  '(which-key-mode t))
 
 (custom-set-faces
@@ -36,6 +32,29 @@
  '(default ((t (:family "Ubuntu Mono" :foundry "DAMA" :slant normal :weight regular :height 158 :width normal))))
  '(hl-line ((t (:extend t :background "grey27"))))
  '(org-drawer ((t (:foreground "steel blue")))))
+
+;;; Packages
+
+(defun package-archives-stale-p (seconds)
+  "Return t if package archives are older than SECONDS."
+  (let ((dir (expand-file-name "archives" package-user-dir)))
+    (or (not (file-exists-p dir))
+        (> (float-time (time-subtract nil
+                         (file-attribute-modification-time
+                          (file-attributes dir))))
+           seconds))))
+
+(defun setup-and-refresh-packages (refresh-interval)
+  "Initialize the package manager, refresh archives if older than
+REFRESH-INTERVAL seconds, and install missing selected packages."
+  (package-initialize)
+  (when (package-archives-stale-p refresh-interval)
+    (package-refresh-contents))
+  (package-install-selected-packages t))
+
+(setup-and-refresh-packages (* 7 24 60 60)) ; 1 week
+
+;;; End Packages
 
 ;; compile
 (global-set-key (kbd "C-c c") 'compile)
@@ -49,8 +68,7 @@
   (ansi-color-apply-on-region compilation-filter-start (point-max)))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
-;; multiple-cursors
-;; https://github.com/magnars/multiple-cursors.el
+;; multiple cursors
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
@@ -71,18 +89,3 @@
 
 ; set C-x <escape> instead
 (global-set-key (kbd "C-x <f12>") #'save-buffers-kill-emacs)
-
-;; c3
-;; (setq treesit-language-source-alist
-;;   '((c3 "https://github.com/c3lang/tree-sitter-c3")))
-;; (add-to-list 'load-path "/home/adam/.emacs.d/repos/c3-ts-mode")
-;; (require 'c3-ts-mode)
-
-;; hungarian-postfix
-;; (add-to-list 'load-path "/home/adam/.emacs.d/repos/hungarian-postfix")
-;; (require 'hungarian-postfix)
-
-;; ido
-;; (ido-mode 1)
-;; (ido-everywhere 1)
-
