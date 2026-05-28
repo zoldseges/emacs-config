@@ -69,6 +69,12 @@
 
 ;;; ----------------  End Package setup  -----------------
 
+;; markdown
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (setq truncate-lines nil
+                  word-wrap t)))
+
 ;; compile
 (global-set-key (kbd "C-c c") 'compile)
 (global-set-key (kbd "C-c r") 'recompile)
