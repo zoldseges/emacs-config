@@ -18,6 +18,7 @@
  '(dired-listing-switches "-al --time-style=long-iso")
  '(dired-use-ls-dired t)
  '(global-hl-line-mode t)
+ '(global-kkp-mode t nil nil "to make some shortcuts work in the terminal too")
  '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(org-startup-truncated nil)
@@ -26,7 +27,7 @@
      ("nongnu" . "https://elpa.nongnu.org/nongnu/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-quickstart t)
- '(package-selected-packages '(magit markdown-mode multiple-cursors pdf-tools xclip))
+ '(package-selected-packages '(kkp magit markdown-mode multiple-cursors pdf-tools xclip))
  '(tool-bar-mode nil)
  '(truncate-lines t nil nil "Let lines go off-screen")
  '(which-key-mode t)
@@ -81,9 +82,13 @@
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 ;; multiple cursors
+;; you'll need package "kkp" to make these shortcuts work in the terminal
+;; and also you need a terminal which supports "Kitty Keyboard Protocol"
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
+;; conflicts with kitty "reload configuration
+;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (setq mc/always-run-for-all t)
 
 ;; c-mode
